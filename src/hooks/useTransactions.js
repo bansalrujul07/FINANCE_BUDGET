@@ -102,15 +102,4 @@ export function useTransactions() {
     filterTransactions,
     TRANSACTION_TYPES,
   };
-
-  return {
-    transactions,
-    totals,
-    categories,
-    addTransaction,
-    updateTransaction,
-    deleteTransaction,
-    filterTransactions,
-    TRANSACTION_TYPES,
-  };
 }
