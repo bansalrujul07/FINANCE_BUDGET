@@ -1,11 +1,15 @@
+import axios from 'axios';
+
 const API_BASE = 'https://api.exchangerate-api.com/v4/latest';
 
 export async function fetchExchangeRates(baseCurrency = 'INR') {
-  const response = await fetch(`${API_BASE}/${baseCurrency}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch exchange rates: ${response.status}`);
+  try {
+    const response = await axios.get(`${API_BASE}/${baseCurrency}`);
+    return response.data;
+  } catch (error) {
+    const status = error?.response?.status;
+    throw new Error(`Failed to fetch exchange rates: ${status || 'unknown'}`);
   }
-  return response.json();
 }
 
 export function convertCurrency(amount, rates, targetCurrency = 'USD') {
